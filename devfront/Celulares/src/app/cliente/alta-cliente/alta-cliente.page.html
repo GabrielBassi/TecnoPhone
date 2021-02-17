@@ -1,0 +1,57 @@
+<div class="doNotPrint">
+<ion-header [translucent]="true">
+  <ion-toolbar>
+   
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; font-weight: bolder;">Alta Cliente</ion-title>
+ 
+  </ion-toolbar>
+</ion-header>
+</div>
+<ion-content [fullscreen]="true">
+
+  <h2 style="text-align: center; margin: 0.5em; color: gray;">Datos del Cliente</h2>
+  <form  #form="ngForm" (ngSubmit)="AgregarCliente()" >
+  <ion-item>
+    <ion-label  color="primary">Dni</ion-label>
+    <ion-input  clearInput="true" name="dni" type="text"  ngModel required  [(ngModel)]="dni"></ion-input>
+   </ion-item>
+   <ion-item>
+    <ion-label color="primary">Nombre</ion-label>
+    <ion-input  clearInput="true" name="nombre" type="text"  ngModel required  [(ngModel)]="nombre"></ion-input>
+   </ion-item>
+   <ion-item>
+    <ion-label color="primary">Apellido</ion-label>
+    <ion-input  clearInput="true" name="apellido" type="text"  ngModel required  [(ngModel)]="apellido"></ion-input>
+   </ion-item>
+   <ion-item>
+    <ion-label  color="primary">Telefono</ion-label>
+    <ion-input clearInput="true" name="telefono" type="text"  ngModel required  [(ngModel)]="telefono"></ion-input>
+   </ion-item>
+   <ion-item>
+    <ion-label  color="primary">Dirección</ion-label>
+    <ion-input clearInput="true" name="direccion" type="text"  ngModel required  [(ngModel)]="direccion"></ion-input>
+   </ion-item>
+   <ion-item>
+    <ion-label  color="primary">Email</ion-label>
+    <ion-input   clearInput="true" name="email" type="text"  ngModel [(ngModel)]="email"></ion-input>
+   </ion-item> 
+   <div class="doNotPrint">
+   <ion-button [disabled]="form.invalid" type ="submit"  expand="block"  color ="success" style="margin: 2%; text-align: center;"   >
+    Aceptar
+    <ion-icon slot="start" name="checkbox-outline"></ion-icon> 
+  </ion-button>
+  </div>
+  </form>  
+  <div class="doNotPrint">
+<ion-button expand="block" color="secondary" style="margin: 2%; text-align: center;" routerLink="/menu">
+  Cancelar
+  <ion-icon slot="start" name="close-circle-outline" ></ion-icon> 
+</ion-button>
+</div>
+</ion-content>
+
+
+  

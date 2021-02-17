@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button color="danger" (click)="logOut()">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title style="text-align: center; font-weight: bolder;">Menú Principal</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!--| date: 'dd/MM/yyyy'-->
+<ion-content [fullscreen]="true">
+  <img src="../../assets/img/logo.jpeg" alt="" class="logo">
+
+  
+    <ion-button type ="button"  expand="block"  color ="success" style="margin: 2%; text-align: center;" routerLink="/orden-reparacion-cel/consultar-orden-cel" >
+      Reparación Celular
+      <ion-icon slot="start" name="search"></ion-icon> 
+      </ion-button>
+ 
+ 
+    <ion-button type ="button"  expand="block"  color ="success"  style="margin: 2%; text-align: center;" routerLink="/orden-reparacion-pc/consultar-orden-pc" >
+      Reparación Pc
+      <ion-icon slot="start" name="desktop-outline"></ion-icon> 
+      </ion-button>
+ 
+  
+</ion-content>

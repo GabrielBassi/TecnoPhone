@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; font-weight: bolder;">Listado Ordenes Pc</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+<div *ngIf='datosEncontradospc'>
+  <ion-card *ngFor="let ordenpc of ordenespc;  let i3 = index" [attr.data-index]="i3" >
+  <ng-container *ngIf="ordenpc.estado === 'Reparado'; then Reparado; else OtraOpcion">
+  </ng-container>
+  <ng-template #Reparado>
+    <ion-card-header *ngIf ="ordenpc.estado === 'Reparado'" style="text-align: center;" color="warning" (click)="boolCabezaera(i3)">
+      <ion-card-title >Número reparación: {{ordenpc.dtoOrdenDeReparacionPcId}}</ion-card-title>
+    <ion-card-subtitle>Fecha Ingreso: {{ordenpc.fechaIngreso| date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+    <ion-card-subtitle>Fecha Egreso: {{ordenpc.fecheEgreso| date: 'dd/MM/yyyy'}} </ion-card-subtitle>
+  </ion-card-header>
+  </ng-template>
+  <ng-template #OtraOpcion>
+    <ng-container *ngIf="ordenpc.estado === 'Retiro'; then Retiro; else AReparar">
+    </ng-container>
+    <ng-template #Retiro>
+      <ion-card-header *ngIf ="ordenpc.estado === 'Retiro'" style="text-align: center;" color="success" (click)="boolCabezaera(i3)">
+        <ion-card-title >Número reparación: {{ordenpc.dtoOrdenDeReparacionPcId}}</ion-card-title>
+      <ion-card-subtitle>Fecha Ingreso: {{ordenpc.fechaIngreso| date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+      <ion-card-subtitle>Fecha Egreso: {{ordenpc.fecheEgreso| date: 'dd/MM/yyyy'}} </ion-card-subtitle>
+    </ion-card-header>
+    </ng-template>
+    <ng-template #AReparar>
+      <ion-card-header *ngIf ="ordenpc.estado === 'A reparar'" style="text-align: center;" color="danger" (click)="boolCabezaera(i3)">
+        <ion-card-title >Número reparación: {{ordenpc.dtoOrdenDeReparacionPcId}}</ion-card-title>
+      <ion-card-subtitle>Fecha Ingreso: {{ordenpc.fechaIngreso| date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+      <ion-card-subtitle>Fecha Egreso: {{ordenpc.fecheEgreso| date: 'dd/MM/yyyy'}} </ion-card-subtitle>
+    </ion-card-header>
+    </ng-template>
+
+  </ng-template>
+    
+  <ion-card  *ngIf='i3==iCard'>
+    <div *ngIf='cardEncontrado'>
+    <ion-item *ngIf ="ordenpc.dni != null">
+      <p>Dni: <a>{{ordenpc.dni}}</a></p>
+    </ion-item>
+    <ion-item>
+      <p>Estado del Equipo: <a>{{ordenpc.estado}}</a></p>
+    </ion-item>
+    <ion-item>
+      <p>Diagnóstico: <a>{{ordenpc.diagnosticoPc}}</a></p>
+    </ion-item>
+    <ion-item>
+      <p>Detalle de orden: <a>{{ordenpc.detalleOrden}}</a></p>
+    </ion-item>
+    <ion-item>
+      <p>Detalle de reparación: <a>{{ordenpc.detalleReparacion}}</a></p>
+    </ion-item>
+  </div>
+  </ion-card>
+
+  <ion-card>
+    <ion-button expand="block" color="tertiary"style="height: 30px;"  [routerLink]="['/orden-reparacion-pc/consultar-orden-pc',ordenpc.dtoOrdenDeReparacionPcId]">
+      Modificar orden
+      <ion-icon slot="start" name="pencil-outline"></ion-icon> 
+    </ion-button>
+  </ion-card>
+</ion-card>
+ </div>
+ 
+ <ion-button expand="block" color="secondary" style="margin: 2%; text-align: center;" routerLink="/menu">
+  Cancelar
+  <ion-icon slot="start" name="close-circle-outline" ></ion-icon> 
+  </ion-button>
+  <ion-infinite-scroll (ionInfinite)="loadData($event)" >
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

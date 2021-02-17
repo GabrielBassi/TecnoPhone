@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; font-weight: bolder;">Listado de Ordenes Celulares</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf='datosEncontrados'>
+    <ion-card *ngFor="let orden of ordenes;  let i = index" [attr.data-index]="i" >
+    <ng-container *ngIf="orden.estado === 'Reparado'; then Reparado; else OtraOpcion">
+    </ng-container>
+    <ng-template #Reparado>
+      <ion-card-header *ngIf ="orden.estado === 'Reparado'" style="text-align: center;" color="warning"  (click)="boolCabezaera(i)">
+        <ion-card-title >Número reparación: {{orden.dtoOrdenDeReparacionCelularId}}</ion-card-title>
+      <ion-card-subtitle>Fecha Ingreso: {{orden.fechaIngreso| date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+      <ion-card-subtitle>Fecha Egreso: {{orden.fecheEgreso| date: 'dd/MM/yyyy'}} </ion-card-subtitle>
+    </ion-card-header>
+    </ng-template>
+    <ng-template #OtraOpcion>
+      <ng-container *ngIf="orden.estado === 'Retiro'; then Retiro; else AReparar">
+      </ng-container>
+      <ng-template #Retiro>
+        <ion-card-header *ngIf ="orden.estado === 'Retiro'" style="text-align: center;" color="success" (click)="boolCabezaera(i)">
+          <ion-card-title >Número reparación: {{orden.dtoOrdenDeReparacionCelularId}}</ion-card-title>
+        <ion-card-subtitle>Fecha Ingreso: {{orden.fechaIngreso| date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+        <ion-card-subtitle>Fecha Egreso: {{orden.fecheEgreso| date: 'dd/MM/yyyy'}} </ion-card-subtitle>
+      </ion-card-header>
+      </ng-template>
+      <ng-template #AReparar>
+        <ion-card-header *ngIf ="orden.estado === 'A reparar'" style="text-align: center;" color="danger" (click)="boolCabezaera(i)">
+          <ion-card-title >Número reparación: {{orden.dtoOrdenDeReparacionCelularId}}</ion-card-title>
+        <ion-card-subtitle>Fecha Ingreso: {{orden.fechaIngreso| date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+        <ion-card-subtitle>Fecha Egreso: {{orden.fecheEgreso| date: 'dd/MM/yyyy'}} </ion-card-subtitle>
+      </ion-card-header>
+      </ng-template>
+    </ng-template>  <ion-card  *ngIf='i==iCard'>
+      <div *ngIf='cardEncontrado'>
+      <ion-item *ngIf ="orden.dni != null">
+        <p>Dni: <a>{{orden.dni}}</a></p>
+      </ion-item>
+      <ion-item>
+        <p>Estado del Equipo: <a>{{orden.estado}}</a></p>
+      </ion-item>
+      <ion-item>
+        <p>Diagnóstico: <a>{{orden.diagnosticoCelular}}</a></p>
+      </ion-item>
+      <ion-item>
+        <p>Detalle de orden: <a>{{orden.detalleOrden}}</a></p>
+      </ion-item>
+      <ion-item>
+        <p>Detalle de reparación: <a>{{orden.detalleReparacion}}</a></p>
+      </ion-item>
+    </div>
+    </ion-card>
+  <ion-card>
+    <ion-button expand="block" color="tertiary"style="height: 30px;"  [routerLink]="['/orden-reparacion-cel/consultar-orden-cel',orden.dtoOrdenDeReparacionCelularId]">
+      Modificar orden
+      <ion-icon slot="start" name="pencil-outline"></ion-icon> 
+    </ion-button>
+  </ion-card>
+</ion-card>
+ </div>
+ <ion-button expand="block" color="secondary" style="margin: 2%; text-align: center;" routerLink="/menu">
+  Cancelar
+  <ion-icon slot="start" name="close-circle-outline" ></ion-icon> 
+  </ion-button>
+  <ion-infinite-scroll (ionInfinite)="loadData($event)" >
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

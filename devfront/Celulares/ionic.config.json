@@ -1,0 +1,7 @@
+{
+  "name": "celulares",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

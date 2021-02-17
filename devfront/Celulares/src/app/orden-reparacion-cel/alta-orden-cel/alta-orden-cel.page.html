@@ -1,0 +1,172 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; font-weight: bolder;">Alta Orden Celular</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ <!--ngModel required [(ngModel)] = "bdni"-->
+  <ion-item style="height: 45px;">
+    <ion-icon slot="end" name="search" id="search-icon"  (click)="BuscarClienteDni(bdni)"></ion-icon>
+    <ion-input style="text-align: center;color:rgb(4, 61, 218);" placeholder="Ingrese Dni Cliente" ngModel required [(ngModel)] = "bdni"></ion-input>
+  </ion-item>
+  <form  #formCli="ngForm">
+ <div *ngIf='datosCliente' >
+  <h2 style="text-align: center; margin: 0.5em; color: gray;">Datos del Cliente</h2>
+  <ion-item>
+    <ion-label  color="primary">Dni</ion-label>
+    <ion-input  clearInput="true" disabled="true" name="dniNC" type="text"  ngModel required [(ngModel)]="dniNC"></ion-input>
+   </ion-item>
+   <ion-item>
+    <ion-label color="primary">Nombre</ion-label>
+    <ion-input  clearInput="true" name="nombre" type="text"  ngModel required [(ngModel)]="nombre"></ion-input>
+   </ion-item>
+   <ion-item>
+    <ion-label color="primary">Apellido</ion-label>
+    <ion-input  clearInput="true" name="apellido" type="text"  ngModel required [(ngModel)]="apellido"></ion-input>
+   </ion-item>
+   <ion-item>
+    <ion-label  color="primary">Telefono</ion-label>
+    <ion-input  clearInput="true" name="telefono" type="text"  ngModel required [(ngModel)]="telefono"></ion-input>
+   </ion-item>
+   <ion-item>
+    <ion-label  color="primary">Dirección</ion-label>
+    <ion-input  clearInput="true" name="direccion" type="text"  ngModel required [(ngModel)]="direccion"></ion-input>
+   </ion-item>
+   <ion-item>
+    <ion-label  color="primary">Email</ion-label>
+    <ion-input  clearInput="true" name="email" type="text"  ngModel [(ngModel)]="email"></ion-input>
+   </ion-item>
+ </div>
+</form>
+ <h2 style="text-align: center; margin: 0.5em; color: gray;">Datos de la orden reparación</h2>
+  <form  #form="ngForm" (ngSubmit)="AgregarOrden()">
+    <!--<ion-item>
+      <ion-label position="floating" color="primary">Fecha Ingreso</ion-label>
+      <ion-input  name="fechaIngreso" type="text"  ngModel required [(ngModel)]="fechaIngreso"></ion-input>
+    </ion-item>-->
+    <div *ngIf='datosDniEncontrado' >
+      <ion-item>
+        <ion-label  color="primary">Dni</ion-label>
+        <ion-input  clearInput="true"  disabled="true" name="dni" type="text"  ngModel required [(ngModel)]="dni"></ion-input>
+       </ion-item>
+    </div>
+    <ion-item>
+      <ion-label color="primary">Fecha Ingreso</ion-label>
+      <ion-datetime displayFormat="D MMM YYYY H:mm" name="fechaIngreso" type="Date" placeholder="Seleccione fecha" ngModel required [(ngModel)]="fechaIngreso"></ion-datetime>
+    </ion-item>
+  <ion-item>
+    <ion-label  color="primary">Marca</ion-label>
+    <ion-input  clearInput="true" name="nombreMarcaCelular" type="text"  ngModel required [(ngModel)]="nombreMarcaCelular"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label  color="primary">Modelo</ion-label>
+    <ion-input  clearInput="true" name="nombreModeloCelular" type="text"  ngModel required [(ngModel)]="nombreModeloCelular"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label  color="primary">Versión</ion-label>
+    <ion-input  clearInput="true" name="versionCelular" type="text"  ngModel required [(ngModel)]="versionCelular"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label  color="primary">Empresa</ion-label>
+    <ion-input  clearInput="true" name="empresa" type="text"  ngModel required [(ngModel)]="empresa"></ion-input>
+  </ion-item>
+  <div *ngIf = 'chip'>
+    <ion-item>
+      <ion-label  color="primary">Chip</ion-label>
+      <ion-toggle  checked="true" color="success" (ionChange)="boolChip()" ></ion-toggle>
+    </ion-item>
+</div>
+<div *ngIf = '!chip'>
+  <ion-item>
+    <ion-label  color="primary">Chip</ion-label>
+    <ion-toggle  checked="false" color="success" (ionChange)="boolChip()" ></ion-toggle>
+  </ion-item>
+</div>
+<div *ngIf = 'tarjetaSD'>
+  <ion-item>
+    <ion-label  color="primary">Tarjeta SD</ion-label>
+    <ion-toggle checked="true" color="success"  (ionChange)="boolTarjetaSd()"></ion-toggle>
+  </ion-item>
+</div>
+<div *ngIf = '!tarjetaSD'>
+  <ion-item>
+    <ion-label  color="primary">Tarjeta SD</ion-label>
+    <ion-toggle checked="false" color="success"  (ionChange)="boolTarjetaSd()"></ion-toggle>
+  </ion-item>
+</div>
+<div *ngIf = 'enciende'>
+<ion-item>
+<ion-label  color="primary">Enciende</ion-label>
+<ion-toggle checked="true" color="success"  (ionChange)="boolEnciende()"></ion-toggle>
+</ion-item>
+</div>
+<div *ngIf = '!enciende'>
+<ion-item>
+<ion-label  color="primary">Enciende</ion-label>
+<ion-toggle checked="false" color="success"  (ionChange)="boolEnciende()"></ion-toggle>
+</ion-item>
+</div>
+<ion-item>
+  <ion-label  color="primary">Pin</ion-label>
+  <ion-input  clearInput="true" name="pin" type="number"  ngModel [(ngModel)]="pin"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label  color="primary">Patrón</ion-label>
+  <ion-input  clearInput="true" name="patron" type="text"  ngModel [(ngModel)]="patron"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color="primary">Detalle</ion-label>
+  <ion-input   clearInput="true" name="detalleOrden" type="text"  ngModel required [(ngModel)]="detalleOrden"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label  color="primary">Diagnóstico</ion-label>
+  <ion-input  clearInput="true" name="diagnosticoCelular" type="text"  ngModel required [(ngModel)]="diagnosticoCelular"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label  color="primary">Presupuesto</ion-label>
+  <ion-input  clearInput="true" name="presupuesto" type="number"  ngModel required [(ngModel)]="presupuesto"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label  color="primary">Seña</ion-label>
+  <ion-input  clearInput="true" name="senia" type="number"  ngModel [(ngModel)]="senia"></ion-input>
+</ion-item>
+  <!--!ion-item>
+    <ion-label  color="primary">Precio final</ion-label>
+    <ion-input  clearInput="true" name="precio" type="number"  ngModel  [(ngModel)]="precio"></ion-input>
+  </ion-item-->
+  <ion-item>
+    <ion-label  color="primary">Estado</ion-label>
+    <ion-select placeholder="ingrese estado"  value="A reparar" #S (ionChange)="estadoReparacion(S.value)">
+     <ion-select-option value="A reparar">
+       A reparar
+     </ion-select-option>
+    </ion-select> 
+  </ion-item>
+  <!--ion-item>
+    <ion-label  color="primary">Detalle de la Reparación</ion-label>
+    <ion-input  clearInput="true" name="detalleReparacion" type="text"  ngModel required [(ngModel)]="detalleReparacion"></ion-input>
+  </ion-item-->
+ <!--!ion-item>
+    <ion-label  color="primary">Proveedor</ion-label>
+    <ion-input  clearInput="true" name="proveedor" type="text"  ngModel  [(ngModel)]="proveedor"></ion-input>
+  </ion-item>
+  <ion-item-->
+    <!--!ion-item>
+    <ion-label  color="primary">Costo del repuesto</ion-label>
+    <ion-input  clearInput="true" name="costoRepuesto" type="number"  ngModel  [(ngModel)]="costoRepuesto"></ion-input>
+  </ion-item-->   
+  <ion-button [disabled]="form.invalid" type ="submit"  expand="block"  color ="success" style="margin: 2%; text-align: center;">
+    Aceptar
+    <ion-icon slot="start" name="checkbox-outline"></ion-icon> 
+  </ion-button>
+  </form>  
+<ion-button expand="block" color="secondary" style="margin: 2%; text-align: center;" routerLink="/menu">
+  Cancelar
+  <ion-icon slot="start" name="close-circle-outline" ></ion-icon> 
+</ion-button>
+</ion-content>
+

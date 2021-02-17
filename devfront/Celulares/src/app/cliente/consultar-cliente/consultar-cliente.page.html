@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; font-weight: bolder;">Buscar un Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ 
+  <ion-item style="height: 45px;">
+    <ion-icon slot="end" name="search" id="search-icon" (click)="BuscarClienteDni(dniCliente)"></ion-icon>
+    <ion-input style="text-align: center;color:rgb(4, 61, 218);" placeholder="Ingrese Dni Cliente" [(ngModel)] = "dniCliente"></ion-input>
+  </ion-item>
+
+ <h2 style="text-align: center; margin: 0.5em; color: gray;">Datos del cliente</h2>
+ <form  #form="ngForm" (ngSubmit)="ModificarCliente()">
+  <div *ngIf = 'datosEncontrados'>
+    
+    <ion-item>
+      <ion-label color="primary">Id cliente:</ion-label>
+      <ion-input disable="true" name="clienteId" type="text"  ngModel required [(ngModel)]="clienteId"></ion-input>
+     </ion-item>
+    <ion-item>
+      <ion-label color="primary">Nombre</ion-label>
+      <ion-input clearInput="true" name="nombre" type="text"  ngModel required [(ngModel)]="nombre"></ion-input>
+     </ion-item>
+  <ion-item>
+    <ion-label color="primary">Apellido</ion-label>
+    <ion-input clearInput="true" name="apellido" type="text"  ngModel required [(ngModel)]="apellido"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label  color="primary">Teléfono</ion-label>
+    <ion-input  clearInput="true" name="telefono" type="text"  ngModel required [(ngModel)]="telefono"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label  color="primary">Email</ion-label>
+    <ion-input  clearInput="true" name="email" type="text"  ngModel [(ngModel)]="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label  color="primary">DNI</ion-label>
+    <ion-input  clearInput="true" name="dni" type="text"  ngModel required [(ngModel)]="dni"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label  color="primary">Dirección</ion-label>
+    <ion-input  clearInput="true" name="direccion" type="text"  ngModel required [(ngModel)]="direccion"></ion-input>
+  </ion-item>
+       
+<ion-button [disabled]="form.invalid" type="submit" expand="block"  color ="tertiary" style="margin: 2%; text-align: center;" >
+  Modificar
+  <ion-icon slot="start" name="pencil-outline"></ion-icon> 
+</ion-button>
+<ion-button [disabled]="true" expand="block"  color ="danger" style="margin: 2%; text-align: center;" (click)="EliminarCliente(dni)">
+  Eliminar
+ <ion-icon slot="start" name="trash"></ion-icon> 
+</ion-button>
+</div>
+</form>  
+
+<div class="doNotPrint">
+<ion-button expand="block" color="secondary" style="margin: 2%; text-align: center;" routerLink="/menu">
+  Cancelar
+  <ion-icon slot="start" name="close-circle-outline" ></ion-icon> 
+</ion-button>
+</div>
+</ion-content>
+
+
+
