@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApiCelulares</name>
+    </assembly>
+    <members>
+        <member name="M:ApiCelulares.Controllers.ClientesController.GetDtoCliente">
+            <summary>
+            Obtiene una lista de clientes
+            </summary>
+            <returns>Devuelve una lista de clientes</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.ClientesController.GetDtoCliente(System.String)">
+            <summary>
+            Obtiene un dni de un cliente
+            </summary>
+            <param name="pDni"></param>
+            <returns>DEvuelve un dni de un cliente</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.ClientesController.PutDtoCliente(ApiCelulares.Controllers.DTO.DtoCliente)">
+            <summary>
+            Modifica un cliente
+            </summary>
+            <param name="pDtoCliente"></param>
+            <returns>Cliente modificado</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.ClientesController.PostDtoCliente(ApiCelulares.Controllers.DTO.DtoCliente)">
+            <summary>
+            Agrega un nuevo cliente
+            </summary>
+            <param name="pClienteDto"></param>
+            <returns>Cliente registrado</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.ClientesController.DeleteDtoCliente(System.String)">
+            <summary>
+            Elimina un cliente 
+            </summary>
+            <param name="pDni"></param>
+            <returns>Cliente eliminado</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionCelularsController.GetOrdenReparacionCelularDTO">
+            <summary>
+            Listado de todas las orden reparacion celular
+            </summary>
+            <returns>Devuelve un listado de todos ordenes reparacion celular</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionCelularsController.GetOrdenReparacionCelularDTO(System.Int32)">
+            <summary>
+            Obtiene una orden reparacion celular
+            </summary>
+            <param name="id">busca por id de orden reparacion</param>
+            <returns>Devuelve una reparacion</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionCelularsController.PutOrdenReparacionCelularDTO(ApiCelulares.Controllers.DTO.DtoOrdenDeReparacionCelular)">
+            <summary>
+            Modificar una orden reparacion celular
+            </summary>
+            <param name="OrdenReparacionDTO"></param>
+            <returns>reparacion Modificado</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionCelularsController.PostOrdenReparacionDTO(ApiCelulares.Controllers.DTO.DtoOrdenDeReparacionCelular)">
+            <summary>
+            Agregar orden reparacion celular
+            </summary>
+            <param name="pOrdenReparacionCelular"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionCelularsController.DeleteOrdenReparacionCelularDTO(System.Int32)">
+            <summary>
+            Elimina una orden reparacion celular de la base de datos
+            </summary>
+            <param name="id">Id del orden reparacion celular a eliminar</param>
+            <returns>orden eliminado</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionCelularsController.GetTodasOrdenReparacionCelular(System.String)">
+            <summary>
+            Obtengo todos las orden de reparacion de un cliente por dni
+            </summary>
+            <param name="pDni"></param>
+            <returns>listado orden de reparaciones cel</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionCelularsController.ActualizarEstadoOrden(System.Int32,System.String)">
+            <summary>
+            Actualiza el estado de una orden reparacion
+            </summary>
+            <param name="pId"></param>
+            <param name="pEstado"></param>
+            <returns>estado Atualizado</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionCelularsController.UltimoIdReparacionPc">
+            <summary>
+            obtiene id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionPcsController.GetOrdenReparacionPcDTO">
+            <summary>
+            Listado de todas las ordenes de reparacion de las pc
+            </summary>
+            <returns>Devuelve un listado de todas las ordenes de reparacion de las pc</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionPcsController.GetOrdenReparacionPcDTO(System.Int32)">
+            <summary>
+            Obtiene una orden reparacion de una pc
+            </summary>
+            <param name="id">Busca por id de orden reparacion</param>
+            <returns>Devuelve una reparacion pc</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionPcsController.PutOrdenReparacionPcDTO(ApiCelulares.Controllers.DTO.DtoOrdenDeReparacionPc)">
+            <summary>
+            Modificar una orden reparacion pc
+            </summary>
+            <param name="OrdenReparacionDTO"></param>
+            <returns>reparacion Modificado</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionPcsController.PostOrdenReparacionDTO(ApiCelulares.Controllers.DTO.DtoOrdenDeReparacionPc)">
+            <summary>
+            Agregar orden reparacion celular
+            </summary>
+            <param name="pOrdenReparacionPc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionPcsController.DeleteOrdenReparacionPcDTO(System.Int32)">
+            <summary>
+            Elimina una orden reparacion pc de la base de datos
+            </summary>
+            <param name="id">Id del orden reparacion pc a eliminar</param>
+            <returns>reparacion eliminado</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionPcsController.GetTodasOrdenReparacionPc(System.String)">
+            <summary>
+            Obtengo todos las orden de reparacion de un cliente por dni
+            </summary>
+            <param name="pDni"></param>
+            <returns>listado orden de reparaciones pc</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionPcsController.ActualizarEstadoOrden(System.Int32,System.String)">
+            <summary>
+            Actualiza el estado de una orden reparacion
+            </summary>
+            <param name="pId"></param>
+            <param name="pEstado"></param>
+            <returns>Estado Atualizado</returns>
+        </member>
+        <member name="M:ApiCelulares.Controllers.OrdenDeReparacionPcsController.GetOrdenReparacionPcDTOPage(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="pnumber"></param>
+            <param name="psize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ApiCelulares.DAL.Repositorio.RepositorioGenerico`2">
+            <summary>
+            Implementacion  del Repositorio generico
+            </summary>
+            <typeparam name="TEntity"> Dominio de la cual se realizará el Repositorio</typeparam>
+            <typeparam name="TDbContext"> Acceso a Base de Datos</typeparam>
+        </member>
+        <member name="M:ApiCelulares.DAL.UnidadDeTrabajo.Guardar">
+            <summary>
+            Guarda los cambios la unidad de trabajo 
+            </summary>
+        </member>
+    </members>
+</doc>
